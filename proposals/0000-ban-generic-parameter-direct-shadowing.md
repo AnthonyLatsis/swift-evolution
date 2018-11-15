@@ -35,7 +35,7 @@ func foo<U>(arg: U) {
 }
 ```
 
-However, things are different in the body of a nominal type extension declaration, where forward referencing *is* allowed. Not only all ocurrences are affected, but the shadowing also happens and can be realized retroactively.
+However, things are different in the body of a nominal type or extension declaration, where forward referencing *is* allowed. Not only all ocurrences are affected, but the shadowing also happens and can be realized retroactively.
 
 ```swift
 struct Box<T> {
