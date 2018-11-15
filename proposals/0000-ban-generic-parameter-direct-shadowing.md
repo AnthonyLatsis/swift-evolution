@@ -62,7 +62,7 @@ Furthermore, shadowing a generic parameter *unintentionally* through an extensio
 
 #### Retroactive implications
 
-Shadowing a generic parameter retroactively can break code. This is clearly a breach in the established resilience model that strives to keep clear of mechanisms capable of retroactively breaking source. We cannot extend enums with cases or protocols with requirements for that very reason. Occasions with shadowing sometimes force the compiler to magically ignore technically correct albeit harmful code when the target declaration source is inaccessible to the consumer, i.e. an SDK framework.
+Shadowing a generic parameter retroactively can break code. This is clearly a breach in the established resilience model that strives to keep clear of mechanisms capable of retroactively breaking source. We cannot extend enums with new cases or protocols with requirements for that very reason. Occasions with shadowing sometimes force the compiler to magically ignore technically correct albeit harmful code when the target declaration source is inaccessible to the consumer, i.e. an SDK framework.
 
 ```swift
 struct Box<T> {
