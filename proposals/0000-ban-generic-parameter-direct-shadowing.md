@@ -58,7 +58,7 @@ extension Box {
 }
 ```
 
-Furthermore, shadowing a generic parameter *unintendedly* through an extension might not affect other code and remain unnoticed until some of that code is put to use. This can happen if a developer declares a nested type or a type alias that turns out to match a generic parameter. Where the majority would rely on a redeclaration error, even an error is not guaranteed. In fact, a type lookup ambuguity only occurs when extending types from a precompiled library. Granted, this scenario is fairly rare, but must be considered as part of a bigger picture.
+Furthermore, shadowing a generic parameter *unintentionally* through an extension might not affect other code and remain unnoticed until some of that code is put to use. This can happen if a developer declares a nested type or a type alias that turns out to match a generic parameter. Where the majority would rely on a redeclaration error, even an error is not guaranteed. In fact, a type lookup ambiguity can only occur when extending types from a precompiled library. Granted, this scenario is fairly rare, but must be considered as part of a bigger picture.
 
 #### Retroactive implications
 
