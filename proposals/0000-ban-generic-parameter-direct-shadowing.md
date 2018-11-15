@@ -7,7 +7,7 @@
 
 ## Introduction
 
-This proposal advises disallowing generic parameter direct shadowing in concrete type declaration contexts and their extensions. A type declaration that shadows a generic parameter of its *immediately enclosing* type or extension declaration will become a redeclaration error.
+This proposal advises disallowing a special case of generic parameter shadowing in type and extension declaration contexts: a nested type declaration that shadows a generic parameter of its immediately enclosing type or extension declaration will become a redeclaration error.
 
 Swift-evolution thread: [Discussion thread topic for that proposal](https://forums.swift.org/)
 
@@ -98,7 +98,7 @@ Change the shadowing rule so that it becomes a redeclaration error. Although gen
 
 ## Source compatibility
 
-Any code that relies on such shadowing occasions will no longer work. However, because there is next to no reason to use this possibility, the impact is expected to be minor.
+Code that relies on such shadowing occasions will no longer work. However, because there is next to no reason to use this possibility, the impact is expected to be minor.
 
 ## Effect on ABI stability
 
