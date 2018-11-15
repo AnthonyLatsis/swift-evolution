@@ -79,8 +79,9 @@ extension Box {
     // 'Box' that doesn't expect 'T == Int'.
 }
 ```
+_ _ _ _ _
 
-When the shadowing occurs directly in the context of the generic type, it is exceedingly hard to come up with a use case that could serve a compelling argument in favor of having such a possibility. But the main reason to consider this proposal isn't just a matter of practicality or correctness. The concrete shadowing rules described above are also a hindrance to the future of the language. There are a number of wanted features that will affect this issue if implemented:
+When shadowing occurs directly in the context of the generic type, it is exceedingly hard to come up with a use case that could serve a compelling argument in favor of having such a possibility. But the main reason to consider this proposal isn't just a matter of practicality or correctness. The concrete shadowing rules described above are also a hindrance to the future of the language. There are a number of wanted features that will affect this issue if implemented:
 
 * **Accessing generic parameters through qualified lookup.** With the ability to access generic parameters using dot notation, cases discussed will be subject to conflicting accesses and shadowing effectively becomes a violation.
 * **Allowing static properties on generic types.** Static properties also give room to analogous conflicts that naturally produce redeclaration errors elsewhere.
