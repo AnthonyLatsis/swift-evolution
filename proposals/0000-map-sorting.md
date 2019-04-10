@@ -160,7 +160,7 @@ The authors concluded that `transform` should be positioned *before* the `areInI
 
 ### `isExpensiveTransform`
 
-The `isExpensiveTransform` is an optional flag included in the proposed method so that the caller my opt-in to using the [Schwartzian Transform](https://en.wikipedia.org/wiki/Schwartzian_transform). The authors think that this optimization is useful enough to be worth including as a part of the proposal. Since it is an optional parameter (defaulting to `false`), it could alternatively be excluded. Callers seeking this sort of optimization would otherwise have to use a more complex pattern:
+The `isExpensiveTransform` is an optional flag included in the proposed method so that the caller may opt-in to using the [Schwartzian Transform](https://en.wikipedia.org/wiki/Schwartzian_transform). The authors think that this optimization is useful enough to be worth including as a part of the proposal. Since it is an optional parameter (defaulting to `false`), it could alternatively be excluded. Callers seeking this sort of optimization would otherwise have to use a more complex pattern that is both easy to get wrong and generally less efficient that the implementation provided in this proposal.
 
 ```swift
 array.map { ($0, $0.count) }
