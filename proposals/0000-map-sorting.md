@@ -45,7 +45,7 @@ Thereby, the goal of this proposal is to introduce an API that decouples the com
 
 ## Proposed solution
 
-The authors propose to add an overload for both the nonmutating `sorted` and in-place `sort` methods on `Sequence` and `MutableCollection` respectively. A mapping closure `(Element) -> Value` will lead the argument list, followed by the well known `areInIncreasingOrder` predicate of the type `(Value, Value) -> Bool`. Additionally, we propose a flag for opting into the already mentioned [Schwartzian Transform](https://en.wikipedia.org/wiki/Schwartzian_transform) optimization.
+The authors propose to add an overload for both the nonmutating `sorted` and in-place `sort` methods on `Sequence` and `MutableCollection` respectively. A mapping closure `(Element) -> Value` will lead the argument list, followed by the well known `areInIncreasingOrder` predicate of the type `(Value, Value) -> Bool`. Additionally, we propose a flag for opting in to the Schwartzian Transform optimization.
  
  Here are some example usages:
 
