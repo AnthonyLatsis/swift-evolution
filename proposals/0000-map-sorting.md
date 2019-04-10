@@ -8,7 +8,7 @@
 
 ## Introduction
 
-This proposal presents an addition to the Standard Library that makes it easy to sort a collection on some set of mapped values, provided via a transform closure or `KeyPath`, in a way that is ergonomic, idiomatic, and performant.
+This proposal presents an addition to the Standard Library that makes it easy to sort a collection over some set of mapped values, provided via a transform closure or `KeyPath`, in a way that is ergonomic, idiomatic, and performant.
 
 Swift-evolution thread: [Discussion thread topic for that proposal](https://forums.swift.org/t/map-sorting/21421)
 
