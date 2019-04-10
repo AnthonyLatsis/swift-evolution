@@ -38,7 +38,7 @@ chats.sort { $0.lastMsg.date > $1.lastMsg.date }
 
 In many circumstances, this approach can cause issues:
 * The `$0.property < $1.property` syntax often leads to copy-and-paste bugs.
-* For long property names or complicated multi-line predicates, this syntax can be especially verbose since it requires repeating the value accessor twice.
+* For long property names or complicated multi-line predicates, this syntax can be especially verbose since it requires repeating the accessor or computation twice.
 * When the values are expensive to retrieve or calculate, this type of predicate becomes an obstacle for optimizations. It may be desirable to trade memory for speed such that each value is computed once per element rather than O(*n* log*n*) times. For an ϴ(*n*) operation, this optimization can theoretically speed up sorting by a factor of 10 for an array of 1000 elements. This is called the  [Schwartzian Transform](https://en.wikipedia.org/wiki/Schwartzian_transform).
 
 Thereby, the goal of this proposal is to introduce an API that decouples the comparison of values from their retrieval, bringing ergonomic benefits for an ample range of cases, and opening the door for new optimizations.
