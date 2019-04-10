@@ -68,56 +68,53 @@ chats.sort(on: \.lastMsg.date, by: >)
 
 ```swift
 extension Sequence {
-    
-    @inlinable
-    public func sorted<Value>(
-        on transform: (Element) throws -> Value,
-        by areInIncreasingOrder: (Value, Value) throws -> Bool,
-        isExpensiveTransform: Bool = false
-        ) rethrows -> [Element] {
-        guard isExpensiveTransform else {
-            return try sorted {
-                try areInIncreasingOrder(transform($0), transform($1))
-            }
-        }
-        var pairs = try map {
-            try (element: $0, value: transform($0))
-        }
-        try pairs.sort {
-            try areInIncreasingOrder($0.value, $1.value)
-        }
-        
-        return pairs.map { $0.element }
+
+  @inlinable
+  public func sorted<Value>(
+    on transform: (Element) throws -> Value,
+    by areInIncreasingOrder: (Value, Value) throws -> Bool,
+    isExpensiveTransform: Bool = false
+  ) rethrows -> [Element] {
+    guard isExpensiveTransform else {
+      return try sorted {
+        try areInIncreasingOrder(transform($0), transform($1))
+      }
     }
-    
+    var pairs = try map {
+      try (element: $0, value: transform($0))
+    }
+    try pairs.sort {
+      try areInIncreasingOrder($0.value, $1.value)
+    }
+
+    return pairs.map { $0.element }
+  }
 }
 
-
 extension MutableCollection where Self: RandomAccessCollection {
-    
-    @inlinable
-    public mutating func sort<Value>(
-        on transform: (Element) throws -> Value,
-        by areInIncreasingOrder: (Value, Value) throws -> Bool,
-        isExpensiveTransform: Bool = false
-        ) rethrows {
-        guard isExpensiveTransform else {
-            return try sort {
-                try areInIncreasingOrder(transform($0), transform($1))
-            }
-        }
-        var pairs = try map {
-            try (element: $0, value: transform($0))
-        }
-        try pairs.sort {
-            try areInIncreasingOrder($0.value, $1.value)
-        }
-        
-        for (i, j) in zip(indices, pairs.indices) {
-            self[i] = pairs[j].element
-        }
+
+  @inlinable
+  public mutating func sort<Value>(
+    on transform: (Element) throws -> Value,
+    by areInIncreasingOrder: (Value, Value) throws -> Bool,
+    isExpensiveTransform: Bool = false
+  ) rethrows {
+    guard isExpensiveTransform else {
+      return try sort {
+        try areInIncreasingOrder(transform($0), transform($1))
+      }
     }
-    
+    var pairs = try map {
+      try (element: $0, value: transform($0))
+    }
+    try pairs.sort {
+      try areInIncreasingOrder($0.value, $1.value)
+    }
+
+    for (i, j) in zip(indices, pairs.indices) {
+      self[i] = pairs[j].element
+    }
+  }
 }
 ```
 
