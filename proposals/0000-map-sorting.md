@@ -26,14 +26,14 @@ struct Person {
 
 struct Chat {
   ...
-  var lastMsg: Message
+  var lastMessage: Message
 }
 
 var people: [Person] = ...
 var chats: [Chat] = ...
 
 people.sort { $0.age < $1.age }
-chats.sort { $0.lastMsg.date > $1.lastMsg.date }
+chats.sort { $0.lastMessage.date > $1.lastMessage.date }
 ```
 
 In many circumstances, this approach can cause issues:
@@ -51,7 +51,7 @@ The authors propose to add an overload for both the nonmutating `sorted` and in-
 
 ```swift
 people.sort(on: { $0.age }, by: <)
-chats.sort(on: { $0.lastMsg.date }, by: >)
+chats.sort(on: { $0.lastMessage.date }, by: >)
 
 fileUnits.sort(
   on: { $0.raw.count(of: "func") },
@@ -63,7 +63,7 @@ Following the acceptance of [SE-0249](https://github.com/apple/swift-evolution/b
 
 ```swift
 people.sort(on: \.age, by: <)
-chats.sort(on: \.lastMsg.date, by: >)
+chats.sort(on: \.lastMessage.date, by: >)
 ```
 
 ### Implementation
