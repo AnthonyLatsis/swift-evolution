@@ -14,7 +14,9 @@ Swift-evolution thread: [Discussion thread topic for that proposal](https://foru
 
 ## Motivation
 
-Today, the typical method for sorting arrays is to use an `areInIncreasingOrder` predicate. This closure takes the form `(Element, Element) -> Bool`, so it welds together both the accessing and comparison of values.
+To sort a `Collection`, you're currently required to specify an `areInIncreasingOrder` predicate of the form `(Element, Element) -> Bool`. If you're sorting on the `Element` itself, you can use simple comparators like `<` and `>`.
+
+Sorting a `Collection` on some *property* or *value* derived from the `Element` is more complex, and currently requires specifying a closure that welds together both the accessing and comparison of values.
 
 ```swift
 struct Person {
@@ -34,8 +36,8 @@ people.sort { $0.age < $1.age }
 chats.sort { $0.lastMsg.date > $1.lastMsg.date }
 ```
 
-In many circumstances, this syntax can cause issues:
-* The `$0.property < $1.property` syntax often leads to copy-and-paste bugs, since it requires duplicating the property accessor before and after the comparison operator.
+In many circumstances, this approach can cause issues:
+* The `$0.property < $1.property` syntax often leads to copy-and-paste bugs.
 * For long property names, this syntax can be especially verbose since it requires repeating the property name twice.
 * When the values are expensive to retrieve or calculate, this type of predicate becomes an obstacle for optimizations. It may be desirable to trade memory for speed such that each value is computed once per element rather than O(*n* log*n*) times. For an ϴ(*n*) operation, this optimization can theoretically speed up sorting by a factor of 10 for an array of 1000 elements. This is called the  [Schwartzian Transform](https://en.wikipedia.org/wiki/Schwartzian_transform).
 
