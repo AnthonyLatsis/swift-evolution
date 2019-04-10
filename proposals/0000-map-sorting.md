@@ -135,7 +135,7 @@ people.sort(on: { $0.age })
 people.sort(on: \.age)
 ```
 
-This follows the precedent set by the existing `sort(by:)` and `sorted(by:)` methods. The authors chose to exclude these additional overloads from this initial proposal, as they are purely additive and could be included in either a later proposal or a final stage of this proposal (pending feedback during the review process).
+This follows the precedent set by the existing `sort(by:)` and `sorted(by:)` methods. We chose to exclude these additional overloads from this initial proposal, as they are purely additive and could be included in either a later proposal or a final stage of this proposal (pending feedback during the review process).
 
 ## Alternatives considered
 
