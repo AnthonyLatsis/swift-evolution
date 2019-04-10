@@ -133,11 +133,11 @@ people.sort(on: { $0.age })
 people.sort(on: \.age)
 ```
 
-This follows the precedent set by the existing `sort(by:)` and `sorted(by:)` methods. The authors chose to exclude this additional overload from this initial proposal, as it is purely additive and could be included in either a later proposal or a final stage of this proposal (pending feedback during the review process).
+This follows the precedent set by the existing `sort(by:)` and `sorted(by:)` methods. The authors chose to exclude these additional overloads from this initial proposal, as they are purely additive and could be included in either a later proposal or a final stage of this proposal (pending feedback during the review process).
 
 ## Alternatives considered
 
-### Alternative argument labels
+### Argument labels
 
 #### `people.sort(over: { $0.age }, by: <)`
 
@@ -148,10 +148,20 @@ This follows the precedent set by the existing `sort(by:)` and `sorted(by:)` met
 The `by` label is a perfect candidate to describe the metric used to sort the sequence. `using`, on its turn, is just as fitting for a predicate or an operator. The pair in question is perhaps the only one that always boils down to a proper
 sentence - «*Sort(ed) **by** a metric **using** a predicate*». Nevertheless, the author is convinced in the superior importance of preserving API uniformity and consistency with existing API the Standard Library developers have worked so hard to keep. With ABI Stability kicking in, we no longer have the opportunity for amendments to public API signatures and must be especially careful in this regard.
 
-### Alternative argument order
+### Argument order
 
-It could be desirable to rearrange the arguments so the `transform` closure follows the `areInInreasingOrder` predicate. This would allow the caller to make use of trailing-closure syntax:
+Before adding the `isExpensiveTransform` flag, it was discussed that one could rearrange the arguments such that the `transform` closure follows the `areInInreasingOrder` predicate. That would have allowed the caller to make use of trailing-closure syntax:
 
 `people.sort(by: <) { $0.age }`
 
-During the pitch process, the authors concluded that `transform` should be positioned *before* the `areInIncreasingOrder` predicate. This better mirrors the flow of data, where the `transform` closure is always called before the `areInIncreasingOrder` predicate  `(Element) -> (Value), (Value, Value) -> (Bool)`.
+The authors concluded that `transform` should be positioned *before* the `areInIncreasingOrder` predicate. This better mirrors the flow of data, where the `transform` closure is always called before the `areInIncreasingOrder` predicate  `(Element) -> (Value), (Value, Value) -> (Bool)`.
+
+### `isExpensiveTransform`
+
+The `isExpensiveTransform` is an optional flag included in the proposed method so that the caller my opt-in to using the [Schwartzian Transform](https://en.wikipedia.org/wiki/Schwartzian_transform). The authors think that this optimization is useful enough to be worth including as a part of the proposal. Since it is an optional parameter (defaulting to `false`), it could alternatively be excluded. Callers seeking this sort of optimization would otherwise have to use a more complex pattern:
+
+```swift
+array.map { ($0, $0.count) }
+    .sorted(by: { $0.1 })
+    .map { $0.0 }
+```
