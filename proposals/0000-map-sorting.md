@@ -8,7 +8,7 @@
 
 ## Introduction
 
-The authors propose adding an additional `sort` and `sorted` method on `MutableCollection` and `Sequence`, respectively, to improve the ergonomics for common use cases of the existing `sort` and `sorted` APIs.
+The authors propose adding additional `sorted` and `sort` methods on `Sequence` and `MutableCollection`, respectively, to improve the ergonomics for common use cases of the existing `sort` and `sorted` APIs.
 
 Swift-evolution thread: [Discussion thread topic for that proposal](https://forums.swift.org/t/map-sorting/21421)
 
